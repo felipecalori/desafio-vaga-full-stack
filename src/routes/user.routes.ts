@@ -1,32 +1,26 @@
 import { Router } from "express";
 
-import userCreateController from "../controllers/userCreate.controller";
-import userDeleteSelfController from "../controllers/userDeleteSelf.controller";
-import userListController from "../controllers/userList.controller";
-import userListOneController from "../controllers/userListOne.controller";
-import userLoginController from "../controllers/userLogin.controller";
-import userUpdatePasswordController from "../controllers/userUpdatePassword.controller";
+import userCreateController from "../controllers/user/userCreate.controller";
+import userDeleteSelfController from "../controllers/user/userDeleteSelf.controller";
+import userListController from "../controllers/user/userList.controller";
+import userListOneController from "../controllers/user/userListOne.controller";
+import userUpdatePasswordController from "../controllers/user/userUpdatePassword.controller";
 import { authUSerMiddleware } from "../middlewares/authUser.middleware";
-import {
-  userCreateSchema,
-  validateUserCreateMiddleware,
-} from "../middlewares/validateUserCreate.middleware";
+import validateUserCreateMiddleware from "../middlewares/validateUserCreate.middleware";
+import { userSchema } from "../schemas/user.schema";
 
 const routes = Router();
 
-routes.post(
-  "/users",
-  validateUserCreateMiddleware(userCreateSchema),
-  userCreateController
-);
-routes.post("users/login", userLoginController);
-routes.get("/users", authUSerMiddleware, userListController);
-routes.get("users/me", authUSerMiddleware, userListOneController);
-routes.delete("/users/me", authUSerMiddleware, userDeleteSelfController);
-routes.patch(
-  "/users/me/updatepassword",
-  authUSerMiddleware,
-  userUpdatePasswordController
-);
+export const userRoutes = () => {
+  routes.post(
+    "",
+    validateUserCreateMiddleware(userSchema),
+    userCreateController
+  );
+  routes.get("", authUSerMiddleware, userListController);
+  routes.get("/:id", authUSerMiddleware, userListOneController);
+  routes.delete(":id", authUSerMiddleware, userDeleteSelfController);
+  routes.patch(":id", authUSerMiddleware, userUpdatePasswordController);
 
-export default routes;
+  return routes;
+};

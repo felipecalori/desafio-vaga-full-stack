@@ -1,6 +1,6 @@
-import { AppDataSource } from "../data_source";
-import { User } from "../entities/user.entity";
-import { IUserUpdate } from "../interfaces/user";
+import { AppDataSource } from "../../data_source";
+import { User } from "../../entities/user.entity";
+import { IUserUpdate } from "../../interfaces/user";
 import bcrypt from "bcrypt";
 
 const userUpdatePasswordService = async (

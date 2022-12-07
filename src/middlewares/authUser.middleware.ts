@@ -13,7 +13,8 @@ export const authUSerMiddleware = (
       token as string,
       process.env.JWT_SECRET as string,
       (err: any, decoded: any) => {
-        req.userEmail = decoded.email;
+        req.userId = decoded.id;
+        req.isAdm = decoded.isAdm;
         next();
       }
     );

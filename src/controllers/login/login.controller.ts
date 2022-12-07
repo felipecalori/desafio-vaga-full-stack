@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import userLoginService from "../services/userLogin.service";
+import loginService from "../../services/login/userLogin.service";
 
-const userLoginController = async (req: Request, res: Response) => {
+const loginController = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    const token = await userLoginService({ email, password });
+    const token = await loginService({ email, password });
 
     return res.status(201).json({ token });
   } catch (err) {
@@ -18,4 +18,4 @@ const userLoginController = async (req: Request, res: Response) => {
   }
 };
 
-export default userLoginController;
+export default loginController;

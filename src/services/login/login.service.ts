@@ -1,10 +1,10 @@
-import { IUserLogin } from "../interfaces/user";
-import { AppDataSource } from "../data_source";
-import { User } from "../entities/user.entity";
+import { IUserLogin } from "../../interfaces/user";
+import { AppDataSource } from "../../data_source";
+import { User } from "../../entities/user.entity";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const userLoginService = async ({ email, password }: IUserLogin) => {
+const loginService = async ({ email, password }: IUserLogin) => {
   const userRepository = AppDataSource.getRepository(User);
   const users = await userRepository.find();
 
@@ -29,4 +29,4 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
   return token;
 };
 
-export default userLoginService;
+export default loginService;
