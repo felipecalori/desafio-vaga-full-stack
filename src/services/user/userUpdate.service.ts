@@ -1,10 +1,9 @@
-import { AppDataSource } from "../../data_source";
+import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { IUserUpdate } from "../../interfaces/user";
-import bcrypt from "bcrypt";
 
-const userUpdatePasswordService = async (
-  { firstName, lastName, password, email, phone }: IUserUpdate,
+const userUpdateService = async (
+  { firstName, lastName, email, phone }: IUserUpdate,
   id: string
 ) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -21,15 +20,6 @@ const userUpdatePasswordService = async (
     await userRepository.update(account!.id, { lastName: lastName });
   }
 
-  if (password !== undefined) {
-    if (bcrypt.compareSync(password, account!.password)) {
-      throw new Error("Inform a different password.");
-    }
-
-    const newPassword = bcrypt.hashSync(password, 10);
-    await userRepository.update(account!.id, { password: newPassword });
-  }
-
   if (email !== undefined) {
     await userRepository.update(account!.id, { email: email });
   }
@@ -43,4 +33,4 @@ const userUpdatePasswordService = async (
   return true;
 };
 
-export default userUpdatePasswordService;
+export default userUpdateService;

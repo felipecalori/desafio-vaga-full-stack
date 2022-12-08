@@ -17,9 +17,6 @@ export class User {
   email: string;
 
   @Column()
-  password: string;
-
-  @Column()
   phone: string;
 
   @Column()
@@ -27,9 +24,6 @@ export class User {
 
   @Column()
   updated_at: Date;
-
-  @Column({ default: false })
-  isAdm: boolean;
 
   @OneToMany((type) => Contact, (contact) => contact.user, {
     eager: true,

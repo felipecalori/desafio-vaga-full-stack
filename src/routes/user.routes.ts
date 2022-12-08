@@ -3,10 +3,10 @@ import { Router } from "express";
 import userCreateController from "../controllers/user/userCreate.controller";
 import userDeleteSelfController from "../controllers/user/userDeleteSelf.controller";
 import userListController from "../controllers/user/userList.controller";
-import userListOneController from "../controllers/user/userListOne.controller";
-import userUpdatePasswordController from "../controllers/user/userUpdatePassword.controller";
-import { authUSerMiddleware } from "../middlewares/authUser.middleware";
-import validateUserCreateMiddleware from "../middlewares/validateUserCreate.middleware";
+import userUpdateController from "../controllers/user/userUpdate.controller";
+import userEmailValidationMiddleware from "../middlewares/userEmailValidation.middleware";
+import userExistsValidationMiddleware from "../middlewares/userExistsValidation.middleware";
+import validationMiddleware from "../middlewares/validateUserCreate.middleware";
 import { userSchema } from "../schemas/user.schema";
 
 const routes = Router();
@@ -14,13 +14,17 @@ const routes = Router();
 export const userRoutes = () => {
   routes.post(
     "",
-    validateUserCreateMiddleware(userSchema),
+    validationMiddleware(userSchema),
+    userEmailValidationMiddleware,
     userCreateController
   );
-  routes.get("", authUSerMiddleware, userListController);
-  routes.get("/:id", authUSerMiddleware, userListOneController);
-  routes.delete(":id", authUSerMiddleware, userDeleteSelfController);
-  routes.patch(":id", authUSerMiddleware, userUpdatePasswordController);
+  routes.get("", userListController);
+  routes.delete(
+    ":id",
+    userExistsValidationMiddleware,
+    userDeleteSelfController
+  );
+  routes.patch(":id", userExistsValidationMiddleware, userUpdateController);
 
   return routes;
 };

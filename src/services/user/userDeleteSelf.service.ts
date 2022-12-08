@@ -1,5 +1,5 @@
-import { AppDataSource } from "../data_source";
-import { User } from "../entities/user.entity";
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities/user.entity";
 
 const userDeleteSelfService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
