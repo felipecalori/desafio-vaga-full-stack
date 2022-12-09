@@ -8,7 +8,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import { Header } from "../../components/Header";
-import { useEffect, useMemo, useState } from "react";
 
 function UpdateForm() {
   const id = JSON.parse(localStorage.getItem("id"));
