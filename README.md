@@ -1,6 +1,4 @@
-# desafio-vaga-full-stack
-
-# Projeto-Tecnico-S3-M6
+# Desafio-vaga-full-stack
 
 O projeto deve criar um cadastro de clientes que poderá conter muitos contatos associados. Depois deste processo deverá ter um relatório em tela que mostre os clientes e os contatos vinculados a este cliente.Projeto fullstack realizado em Node.js com o framework express,banco de dados relacional Postgres e React com Typescript.
 
