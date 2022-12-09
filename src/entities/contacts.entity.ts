@@ -25,7 +25,7 @@ export class Contact {
   @Column()
   updated_at: Date;
 
-  @ManyToOne((type) => User, (user) => user.contacts)
+  @ManyToOne((type) => User, (user) => user.contacts, { onDelete: "CASCADE" })
   user: User;
 
   constructor() {

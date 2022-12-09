@@ -3,7 +3,7 @@ import userDeleteSelfService from "../../services/user/userDeleteSelf.service";
 
 const userDeleteSelfController = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
+    const { id } = req.params;
 
     await userDeleteSelfService(id);
 
