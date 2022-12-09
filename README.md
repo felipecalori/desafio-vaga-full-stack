@@ -266,12 +266,12 @@ O Contact é definido como:
 
 ### 2.1. **Criar Contato**
 
-### `/contacts/:id`
+### `/contact/:id`
 
 ### Exemplo de Request:
 
 ```
-POST /contacts/
+POST /contact/
 ```
 
 ### Corpo da Requisição:
@@ -349,7 +349,7 @@ Vazio
 ### Request:
 
 ```
-PATCH /users/6681eabd-7ea4-47e4-8379-532b0861a944
+PATCH /contact/6681eabd-7ea4-47e4-8379-532b0861a944
 ```
 
 ### Corpo da Requisição:
@@ -390,7 +390,7 @@ PATCH /users/6681eabd-7ea4-47e4-8379-532b0861a944
 ### Request:
 
 ```
-DELETE /contacts/9cda28c9-e540-4b2c-bf0c-c90006d37893
+DELETE /contact/9cda28c9-e540-4b2c-bf0c-c90006d37893
 ```
 
 ### Corpo da Requisição:
